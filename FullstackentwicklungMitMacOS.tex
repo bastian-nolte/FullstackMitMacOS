@@ -197,6 +197,18 @@ ssh-copy-id -i ~/.ssh/key_rsa.pub musterfrau@webserver.example.com
 \end{minted}
 
 TODO: Prüfe ob Passphrase mit keychain verwendet werden kann um die Sicherheit zu erhöhen!
+Add your SSH key to the ssh-agent
+Run the following commands to add your SSH key to the ssh-agent.
+
+$ eval "$(ssh-agent -s)"
+If you're running macOS Sierra 10.12.2 or later, you will need to modify your ~/.ssh/config file to automatically load keys into the ssh-agent and store passphrases in your keychain:
+
+Host *
+AddKeysToAgent yes
+UseKeychain yes
+IdentityFile ~/.ssh/id\_rsa
+# No matter what operating system version you run you need to run this command to complete this step:
+ssh-add -K ~/.ssh/id\_rsa
 
 \section{Git}
 Git ist eine freie Software zur verteilten Versionsverwaltung von Dateien.
@@ -204,6 +216,32 @@ Git ist eine freie Software zur verteilten Versionsverwaltung von Dateien.
 Installiere Git durch Eingabe des folgenden Kommandozeilenbefehls.
 \begin{minted}{bash}
 brew install git
+\end{minted}
+
+Erzeuge eine \code{.gitignore}-Datei in Deinem Nutzerverzeichnis \code{\~} die Du global nutzen wirst. Diese könnte zum Beispiel, wie folgt aussehen:
+\begin{minted}{bash}
+# Folder view configuration files
+.DS_Store
+Desktop.ini
+
+# Thumbnail cache files
+._*
+Thumbs.db
+
+# Files that might appear on external disks
+.Spotlight-V100
+.Trashes
+
+# Java, IntelliJ, Eclipse, node_modules....
+# TODO...
+node_modules
+venv
+.sass-cache
+\end{minted}
+
+Registriere die Datei in Deiner globalen Git-Konfiguration, um die Einstellungen wirksam zu machen.
+\begin{minted}{bash}
+git config --global core.excludesfile ~/.gitignore
 \end{minted}
 
 \subsection{SSH-Schlüssel hinterlegen}
@@ -246,6 +284,10 @@ brew install maven
 	\item Benutzerlogin (p-Nummer) und verschlüsseltes Passwort in der soeben erzeugten Datei settings.xml anpassen.
 \end{itemize}
 
+\begin{minted}{bash}
+# sed -i.bak -E 's!(<username>)[^<]*(</username>)!\1<Deine Login ID>\2!g' ~/.m2/settings.xml, z.B.
+sed -i.bak -E 's!(<username>)[^<]*(</username>)!\1p123123\2!g' ~/.m2/settings.xml
+\end{minted}
 
 
 
@@ -275,7 +317,88 @@ sass\textunderscore binary\textunderscore site=http://repo.iasrv.css.ch/tools/no
 Siehe auch https://sourabhbajaj.com/mac-setup/iTerm/zsh.html
 
 \section{vim}
+Vim
+The Ultimate vimrc
+https://sourabhbajaj.com/mac-setup/Vim/
 \section{Kommandozeilenbefehle}
+Liste nützlicher Kommandozeilenbefehle:
+Schaue die Dokumentation zu einem Kommandozeilenbefehl an
+\begin{minted}{bash}
+man <kommandozeilenbefehl>
+\end{minted}
+
+Aktuellen Nutzer ausgeben
+\begin{minted}{bash}
+whoami
+\end{minted}
+
+Aktuellen Pfad (Verzeichnis) ausgeben
+\begin{minted}{bash}
+pwd
+\end{minted}
+
+Wechsle in ein Verzeichnis
+\begin{minted}{bash}
+#cd <verzeichnisname>, z.B.
+cd /tmp
+# Wechsle in das Nutzerverzeichnis (Heimatverzeichnis)
+cd \~
+# Wechsle zurück in das vorherige Verzeichnis
+cd -
+\end{minted}
+
+Tip: Nutze <tab> und <tab><tab> für automatische Ergänzungen.
+
+Verzeichnis erstellen
+\begin{minted}{bash}
+mkdir <verzeichnisname>
+\end{minted}
+
+Datei oder Verzeichnis verschieben
+\begin{minted}{bash}
+mv <quelle> <ziel>
+\end{minted}
+
+Datei oder Verzeichnis kopieren
+\begin{minted}{bash}
+cp <quelle> <ziel>
+\end{minted}
+
+Zeige den Inhalt einer Datei an:
+\begin{minted}{bash}
+# cat <dateiname>, z.B.
+cat /var/log/meinserver.log
+\end{minted}
+
+Gebe die neuesten Inhalte einer Datei auf der Konsole aus
+\begin{minted}{bash}
+tail -f /var/log/messages
+# Mit Unterstützung von Logrotate
+tail -F /var/log/messages
+\end{minted}
+
+Alle Vorkommnisse eines regulären Ausdruckes in einer Datei ersetzen (substituieren), wobei die ursprüngliche Zustand in einer Kopie erhalten bleibt.
+\begin{minted}{bash}
+# sed -i.bu 's/<vorher>/<nachher>/g' <dateiname>, z.B.
+sed -i.bu 's/Text/Hund/g' ./test.txt
+\end{minted}
+
+Finde alle Dateien mit bestimmten Merkmalen. Beispiel
+\begin{minted}{bash}
+# Dateien die in den letzten 10 Minuten geändert wurden 
+find . -mmin -10
+\end{minted}
+
+Die Befehlshistorie anzeigen
+\begin{minted}{bash}
+history
+\end{minted}
+
+Den letzen Befehl nochmals als root ausführen
+\begin{minted}{bash}
+sudo !!
+\end{minted}
+
 
 \printbibliography
 \end{document}
