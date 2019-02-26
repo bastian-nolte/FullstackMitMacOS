@@ -1,0 +1,9 @@
+.bib
+*.bcf
+*.blg
+*.log
+*.out
+*.run.xml
+*.synctex.gz
+_minted-FullstackentwicklungMitMacOS/
+*.pygtex

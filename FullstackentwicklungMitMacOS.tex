@@ -1,0 +1,281 @@
+\documentclass[]{article}
+
+\usepackage[a4paper,left=3cm,right=3cm,top=2cm,bottom=4cm,bindingoffset=5mm]{geometry}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage{applekeys}
+\usepackage{minted}
+\usepackage{graphicx}
+\usepackage{filecontents}
+\usepackage[backend=biber]{biblatex}
+\addbibresource{FullstackentwicklungMitMacOS.bib}
+
+% Unterstützung für > < etc.
+\usepackage[T1]{fontenc}
+
+% Unterstützung für Inline-Codeblöcke
+\newcommand{\code}[1]{\texttt{#1}}
+
+% Abstand und Einzu bei Absätzen
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{1em}
+
+
+%opening
+\title{Fullstackentwicklung mit MacOS}
+\author{Bastian Nolte}
+
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+...
+\end{abstract}
+
+\section{Xcode}
+\href{https://developer.apple.com/xcode/}{Xcode} ist eine integrierte Entwicklungsumgebung für macOS mit einer Reihe von Softwareentwicklungswerkzeugen, die von Apple für die Entwicklung von Software für macOS, iOS, watchOS und tvOS entwickelt wurden.
+
+Installiere Xcode über den AppStore von Apple.
+\subsection{Xcode command line tools}
+Xcode verfügt auch über einen Satz von Kommandozeilenwerzeugen. Diese installierst Du am besten über das Terminal. Das Terminal kannst Du öffnen, indem Du \cmdkey+Leertaste drückst und dann \code{terminal} eingibst und \returnkey\, drückst.
+
+Danach kann die Installation der \code{Xcode  command line tools} wie folgt durchgeführt werden.
+\begin{minted}{bash}
+xcode-select --install
+\end{minted}
+
+\section{Paketmanager}
+MacOS bringt keinen eigenen Paketmanager mit, wie man ihn von anderen Unix-Derivaten kennt. Daher haben es sich verschiedene Projekte zur Aufgabe gemacht, diese Lücke zu füllen.
+
+Die folgende Liste liefert einen Überblick aktueller Paketmanager im März 2019.
+
+\begin{tabular}[t]{lll}
+	\toprule
+	Mac Paketmanager & Pakete & Benötigt Rootrechte \\
+	\midrule
+	Homebrew & 4635 & Nein \\
+	Homebrew Cask & 4051 & Nein \\
+	Nix package manager & 15858 & Nein \\
+	pkgsrc & 18560 & Ja \\
+	MacPorts & 20572 & Ja \\
+	\bottomrule
+\end{tabular}
+
+Die Informationen wurden von der Seite \href{https://www.slant.co/topics/511/~best-mac-package-managers#3}{Slant...  What are the best Mac package managers?} bezogen.
+
+\subsection{Homebrew installieren}
+Homebrew kann einfach über das Terminal installiert werden.
+
+Die Installation erfolgt danach durch Eingabe des folgenden Kommandos im soeben geöffneten Terminal:
+\begin{minted}{bash}
+/usr/bin/ruby -e \
+"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+\end{minted}
+
+Homebrew-Cask kann wie folgt verfügbar gemacht werden
+\begin{minted}{bash}
+brew tap caskroom/cask
+\end{minted}
+
+\subsection{Die wichtigsten Homebrewkommandos}
+\begin{minted}{bash}
+# Nach einem bestimmten Paket suchen
+brew search <paketname> 
+
+# Das OpenSource-Paket mit dem Namen <paketname> installieren
+brew install <paketname>
+
+# Ein nicht OpenSource-Paket installieren,  z.B. kommerzielle MacOS-Apps.
+brew cask install <paketname>  
+
+# Alle bereits installierten Pakete und deren mitinstallierte Abhängigkeiten 
+# in einer Baumansicht auflisten.
+brew deps --tree --installed
+
+# Alle installierten Pakete in einer flachen Ansicht auflisten
+brew list && brew cask list
+
+# Informationen zu einem bereits installierten Paket erhalten
+brew info <paketname> 
+\end{minted}
+
+Weitere Informationen findest Du auf der \href{https://brew.sh/index_de}{Homepage} des Homebrew-Projektes.
+
+\section{iTerm2}
+iTerm2 ist ein Open-Source-Ersatz für Apples Terminal. Es ist sehr anpassungsfähig und verfügt über viele nützliche Funktionen.
+
+Du kannst es wie folgt installieren:
+\begin{minted}{bash}
+brew cask install iterm2
+\end{minted}
+
+Du startest iTerm2 indem Du \cmdkey+Leertaste drückst und dann \code{iterm} eingibst und \returnkey\, drückst.
+
+\subsection{Tastenkombinationen anpassen}
+Wahrscheinlich kennst Du die Tastenkombinationen mit denen Du wortweise (\optkey) vor- und zurückspringen, beziehungsweise zum Anfang und Ende der Zeile (\cmdkey) navigieren kannst.
+
+Auch iTerm kannst Du so einstellen. Öffne dazu die iTerm2-Einstellungen (\cmdkey +,) und navigiere dann zu \code{Profile} > \code{Schlüssel} und klicke  auf das Symbol +  um eine neue Tastenkombination hinzufügen.
+
+\begin{tabular}[t]{lll}
+	\toprule
+	Keyboard Shortcut & Action & Send \\
+	\midrule
+	\cmdkey \textleftarrow & Send escape sequence & OH \\
+	\cmdkey \textrightarrow & Send escape sequence & OF \\
+	\optkey \textleftarrow & Send escape sequence & b \\
+	\optkey \textrightarrow & Send escape sequence & f \\
+\end{tabular}
+
+Nun kannst Du wortweise vor- und zurück, sowie an den Anfang und das Ende der Zeile navigieren.
+
+\section{Z-Shell}
+Die Z-Shell, die Du vielleicht unter dem Namen zsh kennst, ist eine Unix-Shell, die auf der Standard-Shell für macOS aufbaut und diese um weitere nützliche Funktionen erweitert. 
+
+Installieren kannst Du die zsh durch Eingabe folgenden Befehls:
+\begin{minted}{bash}
+brew install zsh
+\end{minted}
+
+Du solltest ein Framework mit der zsh installieren, da es die Konfiguration und den Einsatz von Plugins und Themes deutlich erleichtert. Es gibt zwei besonders populäre Frameworks, \href{https://github.com/robbyrussell/oh-my-zsh}{Oh My Zsh} und \href{https://github.com/sorin-ionescu/prezto}{Prezto}.
+Bitte beachte, dass Du nur ein Framework und nicht beide installieren solltest, da Du sonst mit Problemen rechnen musst.
+
+\subsection{Oh My Zsh}
+Ich habe mich dafür entschieden \code{Oh My Zsh} einzusetzen. Um es zu installieren, gibst Du folgenden Befehl in Dein Terminal ein.
+\begin{minted}{bash}
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell\
+/oh-my-zsh/master/tools/install.sh)"
+chsh -s $(which zsh) # Setzt die zsh als Standardshell.
+\end{minted}
+
+Ein Upgrade kannst Du mit dem Kommando \code{upgrade\_oh\_my\_zsh} durchführen. Starte \code{iTerm2} neu um zsh zu aktivieren.
+
+\subsection{Oh My Zsh anpassen}
+Die Einstellungen von \code{Oh My Zsh} nach der Installation sind schon recht brauchbar. Es bietet Dir allerdings diverse Möglichkeiten sein Aussehen und Verhalten an Deine Anforderungen anzupassen. Wie das funktioniert kannst Du im \href{https://github.com/robbyrussell/oh-my-zsh/wiki}{Wiki} nachlesen.
+
+Wir wollen für den Anfang einige Plugins installieren. Öffne hierzu die Datei \code{\~/.zshrc} und finde die Zeile die mit \code{plugins=} beginnt und trage Plugins wie folgt ein:
+\begin{minted}{bash}
+plugins=(
+  brew 
+  colored-man 
+  colorize  
+  docker 
+  git 
+  github 
+  history 
+  mvn 
+  ng 
+  node 
+  npm 
+  osx zsh-syntax-highlighting
+)
+\end{minted}
+
+\section{Secure Shell}
+Secure Shell oder SSH bezeichnet sowohl ein Netzwerkprotokoll als auch entsprechende Programme, mit deren Hilfe man auf eine sichere Art und Weise eine verschlüsselte Netzwerkverbindung mit einem entfernten Gerät herstellen kann. Häufig wird diese Methode verwendet, um lokal eine entfernte Kommandozeile verfügbar zu machen, das heißt, auf einer lokalen Konsole werden die Ausgaben der entfernten Konsole ausgegeben und die lokalen Tastatureingaben werden an den entfernten Rechner gesendet. Genutzt werden kann dies beispielsweise zur Fernwartung eines in einem entfernten Rechenzentrum stehenden Servers.\cite{wikipediaSecureShell}
+\subsection{Einen SSH-Schlüssel erzeugen}
+Ein SSH-Schlüssel besteht aus einem Paar von Dateien. Eine davon beinhaltet den privaten Schlüssel, der niemals an Dritte weitergegeben werden sollte. Die andere beinhaltet den öffentlichen Schlüssel. Diesen öffentlichen Schlüssel kannst Du dazu verwenden Dich an Systemen anzumelden ohne Benutzername und Passwort eingeben zu müssen.
+
+Ein Schlüsselpaar kann wie folgt erzeugt werden:
+\begin{minted}{bash}
+ssh-keygen -t rsa
+\end{minted}
+
+\subsection{Den öffentlichen Schlüssel in die Zwischenablage kopieren}
+\begin{minted}{bash}
+pbcopy < ~/.ssh/id_rsa.pub
+\end{minted}
+
+\subsection{Den öffenlichen Schlüssel übertragen}
+Überträgt man den öffentlichen SSH-Schlüssel auf einen anderen Computer, z.B. einen Server und hinterlegt diesen dort, dann kann man sich künftig an diesen Server anmelden, ohne Benutzernamen und Passwort eingeben zu müssen.
+
+Der Schlüssel kann mit folgendem Befehl übertragen und hinterlegt werden:
+\begin{minted}{bash}
+# ssh-copy-id -i ~/.ssh/key_rsa.pub <benutzername>@<servername oder ip>, z.B.
+ssh-copy-id -i ~/.ssh/key_rsa.pub musterfrau@webserver.example.com
+\end{minted}
+
+TODO: Prüfe ob Passphrase mit keychain verwendet werden kann um die Sicherheit zu erhöhen!
+
+\section{Git}
+Git ist eine freie Software zur verteilten Versionsverwaltung von Dateien.
+
+Installiere Git durch Eingabe des folgenden Kommandozeilenbefehls.
+\begin{minted}{bash}
+brew install git
+\end{minted}
+
+\subsection{SSH-Schlüssel hinterlegen}
+Der soeben erzeugte öffentliche SSH-Schlüssel sollte im Bitbucket hinterlegt werden, um den Transport der Daten über das SSH-Protokoll zu ermöglichen.
+
+\href{https://git.css.ch/plugins/servlet/ssh/account/keys}{https://git.css.ch/plugins/servlet/ssh/account/keys}
+
+Dezidierte Informationen finden sich unter ...TODO...
+
+\subsection{Die GIT-Repositories im DEVNET verwenden}
+Nicht alle GIT-Repositories stehen im DEVNET zur Verfügung. Informationen ... finden sich im ....
+
+Zu dem gespiegelten Projekten findet sich jeweils ein Spiegelserver-Projekt auf dem Bitbucketserver. 
+Für EBusiness wäre das entsprechend \href{https://git.css.ch/projects/EBUSINESS-MIRROR}{EBUSINESS-MIRROR}.
+
+Klickt man auch der Bitbucketseite auf die Aktion \code{Klonen} so kann man nun im sich öffnenden Dialog die Auswahl "Klonen von" auf \code{Bitbucket DevNet} umstellen.
+
+\includegraphics[scale=0.3]{assets/clone.png}
+
+Für das Projekt \code{primavera} ergibt sich dann die git-url \\
+\code{ssh://git@git-devnet.css.ch:7999/git/ebusiness-mirror/primavera.git}. Das Klonen erfolgt wie gewohnt mit dem Befehl \\
+\code{git clone ssh://git@git-devnet.css.ch:7999/git/ebusiness-mirror/primavera.git}
+
+\section{Maven}
+...
+\subsection{Maven installieren}
+\begin{minted}{bash}
+brew install maven
+\end{minted}
+
+\subsection{Maven konfigurieren}
+\href{https://confluence.css.ch/confluence/display/TEA/Maven+Zugriff+auf+Artifactory+aus+dem+DevNet}{Maven Zugriff auf Artifactory aus dem DevNet}
+\begin{itemize}
+	\item Den Block \code{settings.xml} auf der Confluenceseite kopieren
+	\item Eine neue Datei \code{settings.xml} im Verzeichnis \code{~/.m2} anlegen
+	\item Den soeben kopierten Konfigurationsblock in die Datei kopieren und die Datei speichern.
+	\item An JFrog-Artifactory im DEVNET unter der URL \\
+	\url{https://artifactory-devnet.css.ch/artifactory/webapp/#/home}
+	anmelden und das verschlüsselte Passwort ermitteln.
+	\item Benutzerlogin (p-Nummer) und verschlüsseltes Passwort in der soeben erzeugten Datei settings.xml anpassen.
+\end{itemize}
+
+
+
+
+\section{NPM installieren und konfigurieren}
+\begin{minted}{bash}
+brew install npm
+\end{minted}
+
+Aktuell nicht weiter konfigurieren >>>
+~\.npmrc
+registry=http://artifactory.css.ch/artifactory/api/npm/npm/
+sass\textunderscore binary\textunderscore site=http://repo.iasrv.css.ch/tools/node\textunderscore sass\textunderscore bindings
+<<<
+
+\section{Entwicklungsumgebung}
+    - google-chrome
+- iterm2
+- intellij-idea (ultimate)
+- oracle-jdk
+- node
+- visual-studio-code
+- angular-cli
+- docker
+- nordvpn
+- postman
+- Zsh, Oh-my-zsh installiert und konfiguriert (OHNE prezto)
+Siehe auch https://sourabhbajaj.com/mac-setup/iTerm/zsh.html
+
+\section{vim}
+\section{Kommandozeilenbefehle}
+
+\printbibliography
+\end{document}
