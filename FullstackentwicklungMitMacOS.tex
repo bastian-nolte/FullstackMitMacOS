@@ -30,10 +30,6 @@
 
 \maketitle
 
-\begin{abstract}
-...
-\end{abstract}
-
 \section{Xcode}
 \href{https://developer.apple.com/xcode/}{Xcode} ist eine integrierte Entwicklungsumgebung für macOS mit einer Reihe von Softwareentwicklungswerkzeugen, die von Apple für die Entwicklung von Software für macOS, iOS, watchOS und tvOS entwickelt wurden.
 
@@ -168,9 +164,20 @@ plugins=(
   ng 
   node 
   npm 
-  osx zsh-syntax-highlighting
+  osx 
+  zsh-syntax-highlighting
 )
 \end{minted}
+
+Zudem könnte es sich als praktisch erweisen in der Eingabehistorie weiter zurückblicken zu können. Dies stellt man wie durch folgende Zeilen ein.
+
+\begin{minted}{bash}
+export HISTSIZE=10000
+export HISTFILESIZE=10000
+\end{minted}
+
+Die Änderungen werden wirksam sobald Du iTerm neu gestartet hast.
+
 
 \section{Secure Shell}
 Secure Shell oder SSH bezeichnet sowohl ein Netzwerkprotokoll als auch entsprechende Programme, mit deren Hilfe man auf eine sichere Art und Weise eine verschlüsselte Netzwerkverbindung mit einem entfernten Gerät herstellen kann. Häufig wird diese Methode verwendet, um lokal eine entfernte Kommandozeile verfügbar zu machen, das heißt, auf einer lokalen Konsole werden die Ausgaben der entfernten Konsole ausgegeben und die lokalen Tastatureingaben werden an den entfernten Rechner gesendet. Genutzt werden kann dies beispielsweise zur Fernwartung eines in einem entfernten Rechenzentrum stehenden Servers.\cite{wikipediaSecureShell}
@@ -196,19 +203,24 @@ Der Schlüssel kann mit folgendem Befehl übertragen und hinterlegt werden:
 ssh-copy-id -i ~/.ssh/key_rsa.pub musterfrau@webserver.example.com
 \end{minted}
 
-TODO: Prüfe ob Passphrase mit keychain verwendet werden kann um die Sicherheit zu erhöhen!
-Add your SSH key to the ssh-agent
-Run the following commands to add your SSH key to the ssh-agent.
+\subsection{SSH-Schlüssel, Phassphrasen und der MacOS-Schlüsselbund}
+Ich empfehle Dir Deine SSH-Schlüssel mit einer Passphrase zu versehen. Wenn Du darauf verzichtest, kann sich jede Person, die in den Besitz Deines privaten Schlüssels gelangt, mit Deinem Benutzeraccount anmelden und das an allen Systemen auf denen Du Deinen Schlüssel hinterlegt hast.
 
-$ eval "$(ssh-agent -s)"
-If you're running macOS Sierra 10.12.2 or later, you will need to modify your ~/.ssh/config file to automatically load keys into the ssh-agent and store passphrases in your keychain:
+Normalerweise müsstest Du dann aber bei jeder Verwendung des Schlüssels Deine Passphrase eingeben. Dies kann schnell anstrengend werden oder - zum Beispiel bei der automatisierten Kommunikation zwischen zwei Computern sogar unmöglich sein.
 
-Host *
-AddKeysToAgent yes
-UseKeychain yes
-IdentityFile ~/.ssh/id\_rsa
-# No matter what operating system version you run you need to run this command to complete this step:
-ssh-add -K ~/.ssh/id\_rsa
+Dies kannst Du vermeiden, indem Du Deine privaten Schlüsselidentitäten dem SSH-Authentifizierungsagenten hinzufügst und die Passphrasen im Schlüsselbund Deines MacOS-Benutzers hinterlegst. 
+
+\begin{minted}{bash}
+# ssd-add fügt Deine SSH-Schlüsselidentitäten
+# dem SSH authentication agent hinzu
+# -K sorgt dafür, dass Deine Passphrases in Deinem Schlüsselbund hinterlegt werden.
+ssh-add -K
+\end{minted}
+
+SSH-Schlüssel kannst Du auch nachträglich mit eine Passphrase versehen.
+\begin{minted}{bash}
+ssh-keygen -p
+\end{minted}
 
 \section{Git}
 Git ist eine freie Software zur verteilten Versionsverwaltung von Dateien.
@@ -399,6 +411,9 @@ Den letzen Befehl nochmals als root ausführen
 sudo !!
 \end{minted}
 
+Screen
+
+Screensession aufzeichnen
 
 \printbibliography
 \end{document}
