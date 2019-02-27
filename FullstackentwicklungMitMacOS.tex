@@ -70,11 +70,6 @@ Die Installation erfolgt danach durch Eingabe des folgenden Kommandos im soeben 
 "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 \end{minted}
 
-Homebrew-Cask kann wie folgt verfügbar gemacht werden
-\begin{minted}{bash}
-brew tap caskroom/cask
-\end{minted}
-
 \subsection{Die wichtigsten Homebrewkommandos}
 \begin{minted}{bash}
 # Nach einem bestimmten Paket suchen
@@ -153,7 +148,6 @@ Die Einstellungen von \code{Oh My Zsh} nach der Installation sind schon recht br
 Wir wollen für den Anfang einige Plugins installieren. Öffne hierzu die Datei \code{\~/.zshrc} und finde die Zeile die mit \code{plugins=} beginnt und trage Plugins wie folgt ein:
 \begin{minted}{bash}
 plugins=(
-  brew 
   colored-man 
   colorize  
   docker 
@@ -323,15 +317,13 @@ sass\textunderscore binary\textunderscore site=http://repo.iasrv.css.ch/tools/no
 - visual-studio-code
 - angular-cli
 - docker
-- nordvpn
 - postman
-- Zsh, Oh-my-zsh installiert und konfiguriert (OHNE prezto)
-Siehe auch https://sourabhbajaj.com/mac-setup/iTerm/zsh.html
 
 \section{vim}
-Vim
 The Ultimate vimrc
-https://sourabhbajaj.com/mac-setup/Vim/
+git clone https://github.com/amix/vimrc.git \~{}/.vim\_runtime
+sh \~{}/.vim\_runtime/install\_awesome\_vimrc.sh
+
 \section{Kommandozeilenbefehle}
 Liste nützlicher Kommandozeilenbefehle:
 Schaue die Dokumentation zu einem Kommandozeilenbefehl an
