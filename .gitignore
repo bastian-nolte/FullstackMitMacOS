@@ -5,5 +5,6 @@
 *.out
 *.run.xml
 *.synctex.gz
+*.toc
 _minted-FullstackentwicklungMitMacOS/
 *.pygtex
