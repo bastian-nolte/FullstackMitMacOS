@@ -125,7 +125,7 @@ Du kannst es wie folgt installieren:
 brew cask install iterm2
 \end{bashcode}
 
-Du startest iTerm2 indem Du \cmdkey+Leertaste drückst und dann \code{iterm} eingibst und \returnkey\, drückst. Eine Darstellung der Vorteile, dies sich durch den Einsatz von \code{iTerm} ergeben findest Du auf der \href{https://www.iterm2.com/features.html}{Featureseite} von iTerm.
+Du startest iTerm2 indem Du \cmdkey+Leertaste drückst und dann \code{iterm} eingibst und \returnkey\, drückst. Eine Darstellung der Vorteile, die sich durch den Einsatz von \code{iTerm} ergeben, findest Du auf der \href{https://www.iterm2.com/features.html}{Featureseite} von iTerm.
 
 \subsection{Tastenkombinationen anpassen}
 Wahrscheinlich kennst Du die Tastenkombinationen mit denen Du wortweise (\optkey) vor- und zurückspringen, beziehungsweise zum Anfang und Ende der Zeile (\cmdkey) navigieren kannst.
@@ -185,7 +185,7 @@ plugins=(
   zsh-syntax-highlighting
 )
 \end{bashcode}
-Ob Du alle Plugins in eine Zeile schreibst oder jedes in eine eigene Zeile, ist hierbei unerheblich. Wichtig ist nur, dass Du die Plugins durch mindestens ein Leerzeichnen voneinander trennst.
+Ob Du alle Plugins in eine Zeile schreibst oder jedes in eine eigene Zeile, ist unerheblich. Wichtig ist nur, dass Du die Plugins durch mindestens ein Leerzeichnen voneinander trennst.
 
 Zudem könnte es sich als praktisch erweisen, in der Eingabehistorie weiter zurückblicken zu können. Dies kannst Du erreichen, indem Du Deiner Konfigurationsdatei folgende Zeilen hinzufügst.
 
@@ -198,9 +198,9 @@ Die Änderungen werden wirksam, sobald Du iTerm neu gestartet hast.
 
 
 \section{Secure Shell}
-Secure Shell oder SSH bezeichnet sowohl ein Netzwerkprotokoll als auch entsprechende Programme, mit deren Hilfe man auf eine sichere Art und Weise eine verschlüsselte Netzwerkverbindung mit einem entfernten Gerät herstellen kann. Häufig wird diese Methode verwendet, um lokal eine entfernte Kommandozeile verfügbar zu machen, das heißt, auf einer lokalen Konsole werden die Ausgaben der entfernten Konsole ausgegeben und die lokalen Tastatureingaben werden an den entfernten Rechner gesendet. Genutzt werden kann dies beispielsweise zur Fernwartung eines in einem entfernten Rechenzentrum stehenden Servers.\cite{wikipediaSecureShell}
+Secure Shell oder SSH bezeichnet sowohl ein Netzwerkprotokoll, als auch entsprechende Programme, mit deren Hilfe man auf eine sichere Art und Weise eine verschlüsselte Netzwerkverbindung mit einem entfernten Gerät herstellen kann. Häufig wird diese Methode verwendet, um lokal eine entfernte Kommandozeile verfügbar zu machen, das heißt, auf einer lokalen Konsole werden die Ausgaben der entfernten Konsole ausgegeben und die lokalen Tastatureingaben werden an den entfernten Rechner gesendet. Genutzt werden kann dies beispielsweise zur Fernwartung eines in einem entfernten Rechenzentrum stehenden Servers.\cite{wikipediaSecureShell}
 \subsection{Einen SSH-Schlüssel erzeugen}
-Ein SSH-Schlüssel besteht aus einem Paar von Dateien. Eine davon beinhaltet den privaten Schlüssel, der niemals an Dritte weitergegeben werden sollte. Die andere beinhaltet den öffentlichen Schlüssel. Diesen öffentlichen Schlüssel kannst Du dazu verwenden Dich an Systemen anzumelden ohne Benutzername und Passwort eingeben zu müssen.
+Ein SSH-Schlüssel besteht aus einem Paar von Dateien. Eine davon beinhaltet den privaten Schlüssel, der niemals an Dritte weitergegeben werden sollte. Die andere beinhaltet den öffentlichen Schlüssel. Diesen öffentlichen Schlüssel kannst Du dazu verwenden Dich an Systemen anzumelden, ohne Benutzername und Passwort eingeben zu müssen.
 
 Ein Schlüsselpaar kann wie folgt erzeugt werden:
 \begin{bashcode}
@@ -213,7 +213,7 @@ pbcopy < ~/.ssh/id_rsa.pub
 \end{bashcode}
 
 \subsection{Den öffenlichen Schlüssel übertragen}
-Überträgt man den öffentlichen SSH-Schlüssel auf einen anderen Computer, z.B. einen Server und hinterlegt diesen dort, dann kann man sich künftig an diesen Server anmelden, ohne Benutzernamen und Passwort eingeben zu müssen.
+Überträgt man den öffentlichen SSH-Schlüssel auf einen anderen Computer, z.B. einen Server und hinterlegt diesen dort, dann kann man sich künftig an diesem Server anmelden, ohne Benutzernamen und Passwort eingeben zu müssen.
 
 Der Schlüssel kann mit folgendem Befehl übertragen und hinterlegt werden:
 \begin{bashcode}
@@ -222,7 +222,7 @@ ssh-copy-id -i ~/.ssh/key_rsa.pub musterfrau@webserver.example.com
 \end{bashcode}
 
 \subsection{SSH-Schlüssel, Phassphrasen und der MacOS-Schlüsselbund}
-Ich empfehle Dir Deine SSH-Schlüssel mit einer Passphrase zu versehen. Wenn Du darauf verzichtest, kann sich jede Person, die in den Besitz Deines privaten Schlüssels gelangt, mit Deinem Benutzeraccount anmelden und das an allen Systemen auf denen Du Deinen Schlüssel hinterlegt hast.
+Ich empfehle Dir Deine SSH-Schlüssel mit einer Passphrase zu versehen. Wenn Du darauf verzichtest, kann sich jede Person die in den Besitz Deines privaten Schlüssels gelangt, mit Deinem Benutzeraccount anmelden und das an allen Systemen auf denen Du Deinen Schlüssel hinterlegt hast.
 
 Normalerweise müsstest Du dann aber bei jeder Verwendung des Schlüssels Deine Passphrase eingeben. Dies kann schnell anstrengend werden oder - zum Beispiel bei der automatisierten Kommunikation zwischen zwei Computern - sogar unmöglich sein.
 
@@ -231,7 +231,7 @@ Dies kannst Du vermeiden, indem Du Deine privaten Schlüsselidentitäten dem SSH
 \begin{bashcode}
 # ssd-add fügt Deine SSH-Schlüsselidentitäten
 # dem SSH authentication agent hinzu
-# -K sorgt dafür, dass Deine Passphrases in Deinem Schlüsselbund hinterlegt werden.
+# -K sorgt dafür, dass Deine Passphrasen in Deinem Schlüsselbund hinterlegt werden.
 ssh-add -K
 \end{bashcode}
 
@@ -251,31 +251,48 @@ brew install git
 Weitere Informationen zu Git, findest Du im umfassenden und kostenlosen Buch \href{https://git-scm.com/book/en/v2}{Pro Git} auf der Projekt Homepage, das auch in \href{https://git-scm.com/book/de/v2/}{deutscher Sprache} angeboten wird.
 
 \subsection{Eine globale .gitignore-Datei anlegen}
-Erzeuge eine \code{.gitignore}-Datei in Deinem Nutzerverzeichnis \code{\~} die Du global nutzen wirst. Diese könnte zum Beispiel, wie folgt aussehen:
+Erzeuge eine \code{.gitignore}-Datei in Deinem Nutzerverzeichnis \code{\~} die Du global nutzen wirst. Diese Datei könnte zum Beispiel, wie folgt aussehen:
 \begin{bashcode}
- # See http://help.github.com/ignore-files/ for more about ignoring files.
- 
+# Dokumentation: http://help.github.com/ignore-files/
+# Beispiele für diverse Tools und Sprachen: https://github.com/github/gitignore
+
 # MacOS: Konfigurationsdateien für die Verzeichnisansicht
 .DS_Store
 Desktop.ini
+.AppleDouble
+.LSOverride
 
 # MacOS: Cache-Dateien für Miniaturansichten
 ._*
 Thumbs.db
 
-# Dateien, die auf externen Festplatten erscheinen können
+# Dateien, die in Wurzelvereichnissen auftauchen können
+.DocumentRevisions-V100
+.fseventsd
 .Spotlight-V100
+.TemporaryItems
 .Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+
+# Caches,Backups und Temporärdateien
+*.tmp
+*.bak
+*.swp
+tmp/
 
 # IntelliJ-IDEA
 .idea/
 /**/*.iml
+atlassian-ide-plugin.xml
 
 # Eclipse-IDE
 /**/.classpath
 /**/.project
 /**/.settings/
 *.launch
+.factorypath
+*~.nib
 
  # Visual Studio Code IDE
 .vscode/*
@@ -296,6 +313,10 @@ target/
 # Code coverage Informationen
 coverage/
 
+ # Latex / Tex
+*.aux
+*.bbl
+
 \end{bashcode}
 
 Registriere die Datei in Deiner globalen Git-Konfiguration, um die Einstellungen wirksam werden zu lassen.
@@ -304,12 +325,12 @@ git config --global core.excludesfile ~/.gitignore
 \end{bashcode}
 
 \section{Maven}
-\href{https://maven.apache.org/}{Apache Maven} ist ein in Java geschriebenes Build-Management-Werkzeug. Maven versucht das Pattern "Konvention vor Konfiguration" konsequent für den gesamten Lebenszyklus einer Software abzubilden. Neben der Verwaltung von Abhängigkeiten, wird sowohl das Kompilieren und packen der Software, als auch die Verteilung unterstützt.
+\href{https://maven.apache.org/}{Apache Maven} ist ein in Java geschriebenes Build-Management-Werkzeug. Maven versucht das Pattern "Konvention vor Konfiguration" konsequent für den gesamten Lebenszyklus einer Software abzubilden. Neben der Verwaltung von Abhängigkeiten, wird sowohl das Kompilieren und Packen der Software, als auch die Verteilung unterstützt.
 
 \subsection{Alternativen}
 Neben Maven existieren noch diverse weitere Build-Management-Werkzeuge. Einen guten Überblick gibt der Artikel \href{https://jaxenter.de/8-build-tools-im-vergleich-ant-buildr-maven-bazel-buck-gradle-pants-sbt-41627}{Build-Tools im Vergleich} der Zeitschrift jaxenter.
 
-Ich persönlich denke, dass (Stand 2019) \href{https://gradle.org/}{Gradle} besonders gut für die Arbeit in Java-Projekten geeignet ist. Gradle versucht die guten Seiten von Ant und Maven zu vereinen und ist dabei so erfolgreich, dass Google es als primäres Build-Tool bei der Entwicklung von Android verwendet. Statt XML nutzt Gradle eine domänenspezifische Sprache (DSL), die auf Groovy basiert. Skripte neigen deshalb dazu, wesentlich kürzer und klarer formuliert zu sein, als jene für Ant oder Maven.
+Ich persönlich denke, dass (Stand 2019) \href{https://gradle.org/}{Gradle} besonders gut für die Arbeit in Java-Projekten geeignet ist. Gradle versucht die guten Seiten von Ant und Maven zu vereinen und ist dabei so erfolgreich, dass Google es als primäres Build-Tool bei der Entwicklung von Android verwendet. Statt XML nutzt Gradle eine domänenspezifische Sprache (DSL), die auf Groovy basiert. Daher gibt es die Tendenz, dass Gradle-Skripte häufig wesentlich kürzer und klarer formuliert sind, als jene für Ant oder Maven.
 
 Hinweis: Meines Wissens nach nutzt die CSS Versicherung zurzeit ausschliesslich Maven als Build-Management-Werkzeug für Java.
 
@@ -324,7 +345,7 @@ brew install maven
 \section{npm}
 \href{https://www.npmjs.com/}{npm} ist eines der führenden Build-Management-Werkzeuge in der JavaScript-Welt. Ähnlich wie Maven in der Javawelt, ist es hier sehr verbreitet. 
 
-Aufgrund verschiedener Probleme, unter anderem mit der Verwaltung von indirekten Abhängigkeiten und wegen teils schlechter Performance, erlangte ein neues Build-Management-Werkzeug namens \href{https://yarnpkg.com}{Yarn} das Interesse der Entwicklergemeinde. Viele Gründe die für den Wechsel auf Yarn sprachen, sind in der aktuellen Version von npm nun aus der Welt geschaffen. Es findet eine Rege Diskussion in der Entwicklergemeinde darüber statt, welches der beiden Tool nun das bessere sei.
+Aufgrund verschiedener Probleme, unter anderem mit der Verwaltung von indirekten Abhängigkeiten und wegen teils schlechter Performance, erlangte ein neues Build-Management-Werkzeug namens \href{https://yarnpkg.com}{Yarn} das Interesse der Entwicklergemeinde. Viele Gründe, die für den Wechsel auf Yarn sprachen, sind in der aktuellen Version von npm nun aus der Welt geschaffen. Es findet eine Rege Diskussion in der Entwicklergemeinde darüber statt, welches der beiden Tool nun das bessere sei.
 
 Hinweis: Meines Wissens nach nutzt die CSS Versicherung zurzeit ausschliesslich npm als Build-Management-Werkzeug für JavaSript und TypeScript.
 
@@ -335,11 +356,32 @@ brew install npm
 \end{bashcode}
 
 \section{Entwicklungsumgebung}
+Ich benutze die kommerzielle Entwicklungsumgebung \href{https://www.jetbrains.com/idea/}{IntelliJ IDEA Ultimate} für die Fullstackentwicklung mit Java, ECMAScript (auch JavaScript) und TypeScript. 
 
-    
-- intellij-idea (ultimate)
-- oracle-jdk
+Der Superuser Deines Teams kann für Dich anfragen, ob es möglich ist, Dir eine Lizenz auszustellen.
 
+\subsection{Alternativen zu IntelliJ IDEA}
+Es gibt diverse alternative IDEs, die Du einsetzen kannst. Da Build-Prozess, sowie Deployment und Delivery unabhängig von der Entwicklungsumgebung funktionieren, kannst Du eigentlich jede IDE einsetzen die Dir gefällt.
+
+Populäre Alternativen für die Java-Entwicklung sind zum Beispiel die \href{https://www.eclipse.org/ide/}{Eclipse IDE} und die \href{https://netbeans.org/}{Netbeans IDE}.
+
+\href{https://code.visualstudio.com/}{Visual Studio Code} erfreut sich in den letzten Jahren wachsender Beliebtheit.
+
+Ich bin überzeugter Anwender der Jetbrains-Toolchain. Das muss aber nicht bedeuten, dass es nicht für Dich eine andere IDE geben kann, die besser zu Deiner Arbeitsweise passt.
+
+Eine gute Übersicht an IntelliJ-Alternativen bietet die Seite \href{https://www.slant.co/options/1958/alternatives/~intellij-idea-alternatives}{Slant - What is the best alternative to IntelliJ IDEA?}
+
+\subsection{IntelliJ IDEA installieren}
+\begin{bashcode}
+brew install intellij-idea
+\end{bashcode}
+
+\subsection{Formattierung und Zeichenkodierung }
+Egal für welche IDE Du Dich entschieden hast, Dein Team wird es Dir danken, wenn Du jederzeit sicherstellst, dass Du die Formatierungs-Regeln der CSS importiert, aktivierst und die Zeichencodierung (encoding) auf UTF-8 stellst. Diese Massnahmen werden es Deinen Kollegen erleichtern Deine Codeänderungen zu reviewen oder im allgemeinen festzustellen, was Du mit einem git-commit geändert hast.
+
+Aktuelle Projekte beinhalten oft eine \href{https://editorconfig.org/}{.editorconfig}-Datei aus, die von den meisten aktuellen IDEs berücksichtigt wird. Für unseren älteren Projekte musst Du wahrscheinlich eine Formatierungsdaten im XML-Format (meist Eclipse) importieren.
+
+TODO
 - google-chrome
 - node
 - angular-cli
