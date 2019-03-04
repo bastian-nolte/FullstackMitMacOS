@@ -36,7 +36,6 @@
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{1em}
 
-
 %opening
 \title{Fullstackentwicklung mit MacOS}
 \author{Bastian Nolte}
@@ -350,6 +349,7 @@ brew install maven
 \section{npm}
 \href{https://www.npmjs.com/}{npm} ist eines der führenden Build-Management-Werkzeuge in der JavaScript-Welt. Ähnlich wie Maven in der Javawelt, ist es hier sehr verbreitet. 
 
+\subsection{Alternativen}
 Aufgrund verschiedener Probleme, unter anderem mit der Verwaltung von indirekten Abhängigkeiten und wegen teils schlechter Performance, erlangte ein neues Build-Management-Werkzeug namens \href{https://yarnpkg.com}{Yarn} das Interesse der Entwicklergemeinde. Viele Gründe, die für den Wechsel auf Yarn sprachen, sind in der aktuellen Version von npm nun aus der Welt geschaffen. Es findet eine Rege Diskussion in der Entwicklergemeinde darüber statt, welches der beiden Tool nun das bessere sei.
 
 Hinweis: Meines Wissens nach nutzt die CSS Versicherung zurzeit ausschliesslich npm als Build-Management-Werkzeug für JavaSript und TypeScript.
@@ -378,19 +378,43 @@ Eine gute Übersicht an IntelliJ-Alternativen bietet die Seite \href{https://www
 
 \subsection{IntelliJ IDEA installieren}
 \begin{bashcode}
-brew install intellij-idea
+brew cask install intellij-idea
 \end{bashcode}
 
 \subsection{Formattierung und Zeichenkodierung }
 Egal für welche IDE Du Dich entschieden hast, Dein Team wird es Dir danken, wenn Du jederzeit sicherstellst, dass Du die Formatierungs-Regeln der CSS importiert, aktivierst und die Zeichencodierung (encoding) auf UTF-8 stellst. Diese Massnahmen werden es Deinen Kollegen erleichtern Deine Codeänderungen zu reviewen oder im allgemeinen festzustellen, was Du mit einem git-commit geändert hast.
 
-Aktuelle Projekte beinhalten oft eine \href{https://editorconfig.org/}{.editorconfig}-Datei aus, die von den meisten aktuellen IDEs berücksichtigt wird. Für unseren älteren Projekte musst Du wahrscheinlich eine Formatierungsdaten im XML-Format (meist Eclipse) importieren.
+Aktuelle Projekte beinhalten oft eine \href{https://editorconfig.org/}{.editorconfig}-Datei aus, die von den meisten aktuellen IDEs berücksichtigt wird. Für unseren älteren Projekte musst Du wahrscheinlich eine Formatierungsdatei im XML-Format (meist Eclipse) importieren.
 
-TODO
-- google-chrome
-- node
-- angular-cli
-- postman
+\section{Google Chrome}
+\href{https://www.google.com/chrome/}{Google Chrome} ist zurzeit den am weitesten verbreitete Browser. Es bringt zudem gleich Tools für die Webentwicklung mit, die Du mit der <F12>-Taste öffnen kannst.
+
+Installiere Google Chrome wie folgt:
+\begin{bashcode}
+brew cask install google-chrome
+\end{bashcode}
+
+
+\section{REST-Services testen mit Postman}
+Die \href{https://www.getpostman.com/products}{Postman-App} macht es einfach REST-API zu testen. 
+
+Du kannst Postman wie folgt installieren:
+\begin{bashcode}
+brew cask install postman
+\end{bashcode}
+
+\section{Entwicklungs-Toolchain für SPA}
+...
+
+Die populärsten Frameworks für die Erstellung von SPA sind aktuell \href{https://angular.io/}{Angular}, \href{https://reactjs.org/}{React} und \href{https://vuejs.org/}{Vue}.
+
+\subsection{angular-cli installieren}
+Das \href{https://cli.angular.io/}{Angular Command Line Interface (angular-cli)} unterstützt Dich dabei neue Angular-Anwendungen zu erstellen, die den Best Practices des Angular-Entwickler-Teams genügen. Zudem kann angular-cli Komponenten, Routen, Dienste und Pipes für Dich erstellen.
+
+\begin{bashcode}
+brew install node
+brew cask install angular-cli
+\end{bashcode}
 
 \section{vim}
 The Ultimate vimrc
