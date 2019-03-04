@@ -86,7 +86,7 @@ Die folgende Liste liefert einen Überblick aktueller Paketmanager im März 2019
 	\bottomrule
 \end{tabular}
 
-Die Informationen wurden von der Seite \href{https://www.slant.co/topics/511/~best-mac-package-managers#3}{Slant...  What are the best Mac package managers?} bezogen.
+Die Informationen wurden aus dem Artikel \href{https://www.slant.co/topics/511/~best-mac-package-managers#3}{What are the best Mac package managers?} der Seite Slant bezogen.
 
 \subsection{Homebrew installieren}
 Homebrew kann einfach über das Terminal installiert werden.
@@ -417,94 +417,130 @@ brew cask install angular-cli
 \end{bashcode}
 
 \section{vim}
-The Ultimate vimrc
+Vim ist ein hochgradig konfigurierbarer und erweiterbarer kommandozeilenbasierter Texteditor, der auf nahezu jedem Unixderivat vorgefunden werden kann. Die Bedienung wird von Nutzern, die es gewohnt auf grafischen Systemen zu arbeiten, häufig als gewöhnungsbedürftig oder gar kompliziert wahrgenommen. 
+
+Hat man die anfänglichen Hürden überwunden, so  ermöglicht er komplexe Textmanipulationen.
+
+Auf MacOS ist vim bereits installiert. Ein einfacher Weg, eine sinnvolle Grundkonfiguration vorzunehmen, ist die Verwendung von \href{https://github.com/amix/vimrc}{The ultimate Vim configuration: vimrc}.
+
+Die Konfiguration kann wie folgt angestossen werden:
+
+\begin{bashcode}
 git clone https://github.com/amix/vimrc.git \~{}/.vim\_runtime
 sh \~{}/.vim\_runtime/install\_awesome\_vimrc.sh
+\end{bashcode}
 
 \section{Kommandozeilenbefehle}
-Liste nützlicher Kommandozeilenbefehle:
+Die Kommandozeile auf unixähnlichen Betriebssystemen ist sehr mächtig. 
+In Folge eine Auswahl von Kommandozeilenbefehlen, die ich besonders nützlich finde:
+
+\subsection{Dokumentation von Kommandozeilenbefehlen}
+
 Schaue die Dokumentation zu einem Kommandozeilenbefehl an
 \begin{bashcode}
 man <kommandozeilenbefehl>
 \end{bashcode}
 
-Aktuellen Nutzer ausgeben
+\subsection{Aktuellen Nutzer ausgeben}
 \begin{bashcode}
 whoami
 \end{bashcode}
 
-Aktuellen Pfad (Verzeichnis) ausgeben
+\subsection{Aktuellen Pfad (Verzeichnis) ausgeben}
 \begin{bashcode}
 pwd
 \end{bashcode}
 
-Wechsle in ein Verzeichnis
+\subsection{In ein Verzeichnis wechseln}
+Wechsle in das Verzeichnis mit dem Namen \code{tmp}.
 \begin{bashcode}
-#cd <verzeichnisname>, z.B.
 cd /tmp
-# Wechsle in das Nutzerverzeichnis (Heimatverzeichnis)
-cd \~
-# Wechsle zurück in das vorherige Verzeichnis
+\end{bashcode}
+
+Wechsle in das Nutzerverzeichnis (Heimatverzeichnis)
+\begin{bashcode}
+cd ~
+\end{bashcode}
+
+Wechsle zurück in das vorherige Verzeichnis
+\begin{bashcode}
 cd -
 \end{bashcode}
 
 Tip: Nutze <tab> und <tab><tab> für automatische Ergänzungen.
 
-Verzeichnis erstellen
+\subsection{Verzeichnis erstellen}
 \begin{bashcode}
 mkdir <verzeichnisname>
 \end{bashcode}
 
-Datei oder Verzeichnis verschieben
+\subsection{Datei oder Verzeichnis verschieben}
 \begin{bashcode}
 mv <quelle> <ziel>
 \end{bashcode}
 
-Datei oder Verzeichnis kopieren
+\subsection{Datei oder Verzeichnis kopieren}
 \begin{bashcode}
 cp <quelle> <ziel>
 \end{bashcode}
 
-Zeige den Inhalt einer Datei an:
+\subsection{Zeige den Inhalt einer Datei an}
 \begin{bashcode}
 # cat <dateiname>, z.B.
 cat /var/log/meinserver.log
 \end{bashcode}
 
-Gebe die neuesten Inhalte einer Datei auf der Konsole aus
+\subsection{Datei überwachen und auf der Konsole ausgeben}
+Die neuesten Inhalte einer Datei kannst Du wie folgt ausgeben:
 \begin{bashcode}
 tail -f /var/log/messages
+
 # Mit Unterstützung von Logrotate
 tail -F /var/log/messages
+
+# Nur Zeilen ausgeben, die das Wort "warning" enthalten
+tail -F /var/log/messages | grep 'warning'
+
+# Nur Zeilen ausgeben, die das Wort "warning" enthalten und zusätzlich in Datei schreiben
+tail -F /var/log/messages | grep 'warning' | tee /log/warnings-only.log
 \end{bashcode}
 
+\subsection{Texte ersetzen (substituieren)}
 Alle Vorkommnisse eines regulären Ausdruckes in einer Datei ersetzen (substituieren), wobei die ursprüngliche Zustand in einer Kopie erhalten bleibt.
 \begin{bashcode}
 # sed -i.bu 's/<vorher>/<nachher>/g' <dateiname>, z.B.
-sed -i.bu 's/Text/Hund/g' ./test.txt
+sed -i.bu 's/Vorher/Nachher/g' ./test.txt
 \end{bashcode}
+Eine kompakte Einführung in die Welt der regulären Ausdrücke findest Du im \href{https://danielfett.de/2006/03/20/regulaere-ausdruecke-tutorial/}{Tutorial: Reguläre Ausdrücke} von Daniel Fett.
 
-Finde alle Dateien mit bestimmten Merkmalen. Beispiel
+\subsection{Finde alle Dateien mit bestimmten Merkmalen} 
+
+Beispiel: Dateien die in den letzten 10 Minuten geändert wurden.
 \begin{bashcode}
-# Dateien die in den letzten 10 Minuten geändert wurden 
 find . -mmin -10
 \end{bashcode}
 
-Die Befehlshistorie anzeigen
+\code{find} ist ein sehr mächtiges Werkzeug. Es lohnt sich auf jeden Fall ein Blick in die zugehörige Manpage mit \code{man find}.
+
+\subsection{Die Befehlshistorie anzeigen}
 \begin{bashcode}
 history
 \end{bashcode}
+
+Eine bestimmte Zeile aus der Historie nochmals ausführen
+\begin{bashcode}
+# !<Nummer>, z.B.
+!42
+\end{bashcode}
+
 
 Den letzen Befehl nochmals als root ausführen
 \begin{bashcode}
 sudo !!
 \end{bashcode}
 
-Screen
-
-Screensession aufzeichnen
-
 \section{CSS-spezifische Einstellungen}
+TODO
 \subsection{Das DEVNET}
 \subsection{GIT-Repositories verwenden}
 Nicht alle GIT-Repositories stehen im DEVNET zur Verfügung. Informationen ... finden sich im ....
