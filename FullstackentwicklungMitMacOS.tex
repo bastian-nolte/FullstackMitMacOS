@@ -242,6 +242,26 @@ SSH-Schlüssel kannst Du auch nachträglich mit einer Passphrase versehen.
 ssh-keygen -p
 \end{bashcode}
 
+\subsection{Individuelle Schlüssel pro Server oder Domäne}
+Ich persönlich benutze gerne individuelle Schlüssel für Dienste unterschiedlicher Anbieter, zum Beispiel einen eigenen Schlüssel für \code{github}.
+
+Du kannst dies realisieren, indem Du im Verzeichnis \code{\~\//.ssh} eine Datei mit dem Namen \code{config} erstellt. In dieser Datei kannst Du die Domänen- bzw. Hostnamen den jeweiligen Schüsseln zuordnen. 
+\begin{bashcode}
+UseKeychain yes
+	
+Host github.*
+IdentityFile ~/.ssh/github_id_rsa
+	
+Host *.github.*
+IdentityFile ~/.ssh/github_id_rsa
+	
+Host *.bergsee.consulting
+IdentityFile ~/.ssh/bergsee_id_rsa
+	
+Host *
+IdentityFile ~/.ssh/id_rsa
+\end{bashcode}
+
 \section{Git}
 \href{https://git-scm.com/}{Git} ist eine freie Software zur verteilten Versionsverwaltung von Dateien.
 
