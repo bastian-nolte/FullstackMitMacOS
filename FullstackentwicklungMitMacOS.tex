@@ -47,8 +47,6 @@
 \section{Einleitung}
 Dieser Artikel beschreibt die Installation und Konfiguration von verbreiteten Werkzeugen zur Fullstackentwicklung unter MacOS, am Beispiel von Java und JavaScript/TypeScript.
 
-Das Dokument gliedert sich in zwei Teile. Der erste Teil beschreibt allgemein die Installation und Konfiguration der Entwicklungstoolchain. Der zweite Teil geht dann auf die Besonderheiten bei der CSS-Versicherung ein.
-
 \section{Vorbedingungen}
 Es wird ein Computer mit MacOS als Betriebssystem, sowie ein grundlegendes Verständnis dieses Betriebssystems vorausgesetzt.
 
@@ -336,8 +334,6 @@ Neben Maven existieren noch diverse weitere Build-Management-Werkzeuge. Einen gu
 
 Ich persönlich denke, dass (Stand 2019) \href{https://gradle.org/}{Gradle} besonders gut für die Arbeit in Java-Projekten geeignet ist. Gradle versucht die guten Seiten von Ant und Maven zu vereinen und ist dabei so erfolgreich, dass Google es als primäres Build-Tool bei der Entwicklung von Android verwendet. Statt XML nutzt Gradle eine domänenspezifische Sprache (DSL), die auf Groovy basiert. Daher gibt es die Tendenz, dass Gradle-Skripte häufig wesentlich kürzer und klarer formuliert sind, als jene für Ant oder Maven.
 
-Hinweis: Meines Wissens nach nutzt die CSS Versicherung zurzeit ausschliesslich Maven als Build-Management-Werkzeug für Java.
-
 \subsection{Maven installieren}
 Maven kann mit Homebrew wie folgt installiert werden.
 \begin{bashcode}
@@ -351,8 +347,6 @@ brew install maven
 
 \subsection{Alternativen}
 Aufgrund verschiedener Probleme, unter anderem mit der Verwaltung von indirekten Abhängigkeiten und wegen teils schlechter Performance, erlangte ein neues Build-Management-Werkzeug namens \href{https://yarnpkg.com}{Yarn} das Interesse der Entwicklergemeinde. Viele Gründe, die für den Wechsel auf Yarn sprachen, sind in der aktuellen Version von npm nun aus der Welt geschaffen. Es findet eine Rege Diskussion in der Entwicklergemeinde darüber statt, welches der beiden Tool nun das bessere sei.
-
-Hinweis: Meines Wissens nach nutzt die CSS Versicherung zurzeit ausschliesslich npm als Build-Management-Werkzeug für JavaSript und TypeScript.
 
 \subsection{npm installieren}
 npm kann mit Homebrew wie folgt installiert werden.
@@ -533,59 +527,10 @@ Eine bestimmte Zeile aus der Historie nochmals ausführen
 !42
 \end{bashcode}
 
-
 Den letzen Befehl nochmals als root ausführen
 \begin{bashcode}
 sudo !!
 \end{bashcode}
-
-\section{CSS-spezifische Einstellungen}
-TODO
-\subsection{Das DEVNET}
-\subsection{GIT-Repositories verwenden}
-Nicht alle GIT-Repositories stehen im DEVNET zur Verfügung. Informationen ... finden sich im ....
-
-Zu dem gespiegelten Projekten findet sich jeweils ein Spiegelserver-Projekt auf dem Bitbucketserver. 
-Für EBusiness wäre das entsprechend \href{https://git.css.ch/projects/EBUSINESS-MIRROR}{EBUSINESS-MIRROR}.
-
-Klickt man auch der Bitbucketseite auf die Aktion \code{Klonen} so kann man nun im sich öffnenden Dialog die Auswahl "Klonen von" auf \code{Bitbucket DevNet} umstellen.
-
-\includegraphics[scale=0.3]{assets/clone.png}
-
-Für das Projekt \code{primavera} ergibt sich dann die git-url \\
-\code{ssh://git@git-devnet.css.ch:7999/git/ebusiness-mirror/primavera.git}. Das Klonen erfolgt wie gewohnt mit dem Befehl \\
-\code{git clone ssh://git@git-devnet.css.ch:7999/git/ebusiness-mirror/primavera.git}
-
-\subsection{SSH-Schlüssel hinterlegen}
-Der soeben erzeugte öffentliche SSH-Schlüssel sollte im Bitbucket hinterlegt werden, um den Transport der Daten über das SSH-Protokoll zu ermöglichen.
-
-\href{https://git.css.ch/plugins/servlet/ssh/account/keys}{https://git.css.ch/plugins/servlet/ssh/account/keys}
-
-Dezidierte Informationen finden sich unter ...TODO...
-
-\subsection{Maven konfigurieren}
-\href{https://confluence.css.ch/confluence/display/TEA/Maven+Zugriff+auf+Artifactory+aus+dem+DevNet}{Maven Zugriff auf Artifactory aus dem DevNet}
-\begin{itemize}
-	\item Den Block \code{settings.xml} auf der Confluenceseite kopieren
-	\item Eine neue Datei \code{settings.xml} im Verzeichnis \code{~/.m2} anlegen
-	\item Den soeben kopierten Konfigurationsblock in die Datei kopieren und die Datei speichern.
-	\item An JFrog-Artifactory im DEVNET unter der URL \\
-	\url{https://artifactory-devnet.css.ch/artifactory/webapp/#/home}
-	anmelden und das verschlüsselte Passwort ermitteln.
-	\item Benutzerlogin (p-Nummer) und verschlüsseltes Passwort in der soeben erzeugten Datei settings.xml anpassen.
-\end{itemize}
-
-\begin{bashcode}
-# sed -i.bak -E 's!(<username>)[^<]*(</username>)!\1<Deine Login ID>\2!g' ~/.m2/settings.xml, z.B.
-sed -i.bak -E 's!(<username>)[^<]*(</username>)!\1p123123\2!g' ~/.m2/settings.xml
-\end{bashcode}
-
-\subsection{npm konfigurieren}
-Aktuell nicht weiter konfigurieren >>>
-~\.npmrc
-registry=http://artifactory.css.ch/artifactory/api/npm/npm/
-sass\textunderscore binary\textunderscore site=http://repo.iasrv.css.ch/tools/node\textunderscore sass\textunderscore bindings
-<<<
 
 \printbibliography
 \end{document}
